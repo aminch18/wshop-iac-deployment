@@ -1,0 +1,118 @@
+name: "Terraform Deploy"
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      
+env:
+  ARM_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+  ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZ_SUSCRIPTION_ID }}
+
+jobs:
+  dev:
+    name: "Terraform Dev Environment"
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: terraform
+
+    env:
+      TF_VAR_environment: dev
+
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@master
+
+      - name: Azure Login 🔐
+        run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.9
+
+      - name: Terraform Init 🔃
+        run:  terraform init -upgrade
+
+      - name: Terraform Plan🔧
+        run: terraform plan
+
+      - name: Terraform Apply🏭
+        run: terraform apply -auto-approve
+
+      - name: Azure Logout 🔐
+        run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+
+  stg:
+    name: "Terraform Stg Environment"
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        shell: bash
+        working-directory: terraform
+
+    env:
+      TF_VAR_environment: stg
+
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@master
+
+      - name: Azure Login 🔐
+        run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.9
+
+      - name: Terraform Init 🔃
+        run:  terraform init -upgrade
+
+      - name: Terraform Plan🔧
+        run: terraform plan
+
+      - name: Terraform Apply🏭
+        run: terraform apply -auto-approve
+
+      - name: Azure Logout 🔐
+        run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+
+  prd:
+    name: "Terraform Prd Environment"
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        shell: bash
+        working-directory: terraform
+
+    env:
+      TF_VAR_environment: prd
+
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@master
+
+      - name: Azure Login 🔐
+        run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.9
+
+      - name: Terraform Init 🔃
+        run:  terraform init -upgrade
+
+      - name: Terraform Plan🔧
+        run: terraform plan
+
+      - name: Terraform Apply🏭
+        run: terraform apply -auto-approve
+
+      - name: Azure Logout 🔐
+        run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
