@@ -45,7 +45,7 @@ jobs:
         run: terraform apply -auto-approve
 
       - name: Azure Logout 🔐
-        run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+        run: az logout
 
   stg:
     name: "Terraform Stg Environment"
@@ -80,7 +80,7 @@ jobs:
         run: terraform apply -auto-approve
 
       - name: Azure Logout 🔐
-        run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+        run: az logout
 
   prd:
     name: "Terraform Prd Environment"
@@ -115,4 +115,4 @@ jobs:
         run: terraform apply -auto-approve
 
       - name: Azure Logout 🔐
-        run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+        run: az logout
