@@ -23,7 +23,7 @@ output "key_vault_uri" {
 }
 output "sql_connection_strings" {
     value = toset([
-        for server in azurerm_mssql_server.server : "Server=tcp:${server.fully_qualified_domain_name},1433;Initial Catalog=${var.sql_server_name};Persist Security Info=False;User ID=${server.administrator_login};Password=${server.administrator_login_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+        for server in azurerm_mssql_server.server : "Server=tcp:${server.fully_qualified_domain_name},1433;Initial Catalog=${var.sql_database_name};Persist Security Info=False;User ID=${server.administrator_login};Password=${server.administrator_login_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
     ])
     description = "Connection strings for the Azure SQL Database created by environment."
     sensitive = true
