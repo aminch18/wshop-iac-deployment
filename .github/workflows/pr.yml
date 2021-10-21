@@ -11,6 +11,7 @@ env:
   ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
   ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
   ARM_SUBSCRIPTION_ID: ${{ secrets.AZ_SUSCRIPTION_ID }}
+  ARM_SKIP_PROVIDER_REGISTRATION: true
 
 jobs:
   dev:
@@ -139,7 +140,7 @@ jobs:
         run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
 
   prd:
-    name: "Terraform Stg Environment"
+    name: "Terraform PRD Environment"
     runs-on: ubuntu-latest
     
     defaults:
