@@ -7,10 +7,10 @@ on:
       - main
 
 env:
-  ARM_CLIENT_ID: ${{ secrets.CLIENT_ID }}
-  ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-  ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
-  ARM_SUBSCRIPTION_ID: ${{ secrets.AZ_SUSCRIPTION_ID }}
+  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
   ARM_SKIP_PROVIDER_REGISTRATION: true
 
 jobs:
@@ -79,6 +79,7 @@ jobs:
         run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
 
   stg:
+    needs: dev
     name: "Terraform Stg Environment"
     runs-on: ubuntu-latest
     
@@ -140,6 +141,7 @@ jobs:
         run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
 
   prd:
+    needs: stg
     name: "Terraform PRD Environment"
     runs-on: ubuntu-latest
     
