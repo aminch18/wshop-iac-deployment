@@ -26,6 +26,7 @@ resource "azurerm_mssql_server" "server" {
 
 }
 
+
 resource "azurerm_mssql_database" "db" {
   for_each       = azurerm_mssql_server.server
   name           = var.sql_database_name
