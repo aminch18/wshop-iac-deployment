@@ -6,9 +6,8 @@ az ad sp create-for-rbac --name "{sp-name}" --sdk-auth --role contributor \
 ## Ideal 
 ## Infrastructure created:
     Az Resource Group
-    Az CosmosDb Account
-    Az CosmosDb SQL Database
-    Az CosmosDb SQL Container
+    Az Microsoft SQL Server
+    Az SQL Database
     Az Container Registry
 
 ## Workflows:
@@ -17,10 +16,21 @@ az ad sp create-for-rbac --name "{sp-name}" --sdk-auth --role contributor \
 
 ## Documentation:
     In order to use this repostiory previously is recommended to create Service Principal in Azure in order to be able to do the Azure Login.
+    
 
-## Challenges:
-    1. Modify the main.yml in order to be authenticated via Azure Storage Account Access Key.
+## Challenge:
+    Try to reproduce this using your cloned repository, in order to understand how to set repository secrets.
         · Clone repository
-        · Creation of Az Storage Account manually inside Azure.
-        · Create new Git Hub Repository secret in order to add the requested environment variable related to the Az Blob Storage Access Key.
-        · Modify pr.yml and main.yml files in order to authenticate
+        · Just go to variables.tf and change the default values for the following terraform variables:
+            · sql_server_name
+            · key_vault_name
+            · container_registry_name
+        . Try to reproduce all that I've done it in the demo, and if you've got questions don't be shy 😊
+        · When all the infrastructure is created successfully go to your databases by environment and open the Query Explorer with your user.
+          and run this sql script:
+          CREATE TABLE [Tasks] (
+                [Department] nvarchar(max) NOT NULL,
+                [Title] nvarchar(max) NULL,
+                [IsCompleted] bit NOT NULL,
+                CONSTRAINT [PK_Tasks] PRIMARY KEY ([Id])
+          );
