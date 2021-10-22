@@ -3,7 +3,7 @@ terraform {
     resource_group_name  = "GithubActions-Trainning-Tf-Dev"
     storage_account_name = "tfbackend024356d"
     container_name       = "tf-backend"
-    key                  = "common.tfstate"
+    key                  = "joan-common.tfstate"
   }
 
   required_providers {

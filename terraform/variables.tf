@@ -18,7 +18,7 @@ variable "sql_server_admin_passwd"{
 variable "sql_server_name" {
     type        = string
     description = "Azure Sql Server Name."
-    default = "sql-server-gh-ws"
+    default = "sql-server-gh-ws-joan"
 }
 
 variable "sql_database_name" {
@@ -30,7 +30,7 @@ variable "sql_database_name" {
 variable "key_vault_name" {
     type        = string
     description = "Azure Resource Group Name."
-    default = "kv-gh-actions-wshop"
+    default = "kv-gh-actions-wshop-joan"
 }
 
 variable "location" {
@@ -42,7 +42,7 @@ variable "location" {
 variable "container_registry_name" {
     type        = string
     description = "Azure Container Registry Name"
-    default = "acrwshop"
+    default = "acrwshopjoan"
 }
 
 # variable "environment" {
