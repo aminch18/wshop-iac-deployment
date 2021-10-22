@@ -30,7 +30,7 @@ variable "sql_database_name" {
 variable "key_vault_name" {
     type        = string
     description = "Azure Resource Group Name."
-    default = "kv-gh-actions-wshop-jj"
+    default = "kv-gh-act-wshop-jj"
 }
 
 variable "location" {
