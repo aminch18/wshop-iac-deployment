@@ -5,6 +5,7 @@ az ad sp create-for-rbac --name "{sp-name}" --sdk-auth --role contributor \
     --scopes /subscriptions/{subscription-id}/resourceGroups/{resource-group}
 ## Ideal 
 ## Infrastructure created:
+    Az Resource Group
     Az Microsoft SQL Server
     Az SQL Database
     Az Container Registry
