@@ -23,15 +23,12 @@ jobs:
         shell: bash
         working-directory: terraform
 
-    env:
-      TF_VAR_environment: dev
-
     steps:
       - name: "Checkout"
         uses: actions/checkout@master
 
       - name: Azure Login 🔐
-        run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+        run: az login --service-principal -u ${{ env.ARM_CLIENT_ID}} -p ${{ env.ARM_CLIENT_SECRET }} --tenant ${{ env.ARM_TENANT_ID }}
 
       - uses: hashicorp/setup-terraform@v1
         with:
@@ -76,7 +73,7 @@ jobs:
             })
 
       - name: Azure Logout 🔐
-        run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+        run: az logout
 
   stg:
     needs: dev
@@ -88,15 +85,12 @@ jobs:
         shell: bash
         working-directory: terraform
 
-    env:
-      TF_VAR_environment: stg
-
     steps:
       - name: "Checkout"
         uses: actions/checkout@master
 
       - name: Azure Login 🔐
-        run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+        run: az login --service-principal -u ${{ env.ARM_CLIENT_ID}} -p ${{ env.ARM_CLIENT_SECRET }} --tenant ${{ env.ARM_TENANT_ID }}
 
       - uses: hashicorp/setup-terraform@v1
         with:
@@ -138,7 +132,7 @@ jobs:
             })
 
       - name: Azure Logout 🔐
-        run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+        run: az logout
 
   prd:
     needs: stg
@@ -158,7 +152,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: Azure Login 🔐
-        run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+        run: az login --service-principal -u ${{ env.ARM_CLIENT_ID}} -p ${{ env.ARM_CLIENT_SECRET }} --tenant ${{ env.ARM_TENANT_ID }}
 
       - uses: hashicorp/setup-terraform@v1
         with:
@@ -200,4 +194,4 @@ jobs:
             })
 
       - name: Azure Logout 🔐
-        run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+        run: az logout
