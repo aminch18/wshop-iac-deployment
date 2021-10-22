@@ -34,3 +34,8 @@ az ad sp create-for-rbac --name "{sp-name}" --sdk-auth --role contributor \
                 [IsCompleted] bit NOT NULL,
                 CONSTRAINT [PK_Tasks] PRIMARY KEY ([Id])
           );
+
+## FIXES
+- update pr.yaml on main branch from feature/infrastructure version.
+- merge main into feature/infrastructure version and take README from incoming.
+- follow de steps
