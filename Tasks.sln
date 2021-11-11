@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31717.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A9205081-5AEB-4AF2-98F7-1402A4B91DDA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestApi", "src\RestApi\RestApi.csproj", "{F6C1779D-6D25-4E08-8B39-EF45B2ADE7CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "terraform", "terraform", "{8E9ABDA5-A2F8-4557-93BA-A38CCE5D8387}"
+	ProjectSection(SolutionItems) = preProject
+		terraform\backend.tf = terraform\backend.tf
+		terraform\main.tf = terraform\main.tf
+		terraform\provider.tf = terraform\provider.tf
+		terraform\remotebackend.tf = terraform\remotebackend.tf
+		terraform\variables.tf = terraform\variables.tf
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{62C5899A-DFA9-4B29-AC47-F0B21A3555D8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{144DCDB5-EBB6-4EE4-A2BA-EEE521A3052A}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\main.yml = .github\workflows\main.yml
+		.github\workflows\pr.yml = .github\workflows\pr.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6C1779D-6D25-4E08-8B39-EF45B2ADE7CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6C1779D-6D25-4E08-8B39-EF45B2ADE7CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6C1779D-6D25-4E08-8B39-EF45B2ADE7CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6C1779D-6D25-4E08-8B39-EF45B2ADE7CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F6C1779D-6D25-4E08-8B39-EF45B2ADE7CF} = {A9205081-5AEB-4AF2-98F7-1402A4B91DDA}
+		{144DCDB5-EBB6-4EE4-A2BA-EEE521A3052A} = {62C5899A-DFA9-4B29-AC47-F0B21A3555D8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34F57377-E352-428E-A148-B51913EB59A7}
+	EndGlobalSection
+EndGlobal
